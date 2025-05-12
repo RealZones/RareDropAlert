@@ -147,31 +147,37 @@ register("renderOverlay", () => {
     const sw = Renderer.screen.getWidth();
     const sh = Renderer.screen.getHeight();
 
-    const boxW = 250;
-    const boxH = 240; // Increased box height for new toggle button
+    const boxW = 350;  // Increase the width for a cleaner look
+    const boxH = 400;  // Increase the height to fit everything
     const x = sw / 2 - boxW / 2;
     const y = sh / 2 - boxH / 2;
 
-    const buttonW = 200;
-    const buttonH = 25;
+    const buttonW = 250;  // Button width for a more consistent layout
+    const buttonH = 30;   // Slightly taller buttons for better readability
     const buttonX = sw / 2 - buttonW / 2;
 
-    Renderer.drawRect(Renderer.color(0, 0, 0, 180), x, y, boxW, boxH);
+    // Draw background box with a darker shade
+    Renderer.drawRect(Renderer.color(20, 20, 20, 180), x, y, boxW, boxH);
 
-    const title = "§d✧ Dragon Alert Menu ✧";
+    // Title section at the top
+    const title = "§d✧ Dragon Alert Settings ✧";
     Renderer.drawStringWithShadow(title, sw / 2 - Renderer.getStringWidth(title) / 2, y + 10);
 
+    // List of options
     const options = [
         { label: `Debug Mode: ${debugMode ? "§aON" : "§cOFF"}` },
-        { label: `Common: ${enabledCategories.common ? "§aENABLED" : "§cDISABLED"}` },
-        { label: `Rare: ${enabledCategories.rare ? "§aENABLED" : "§cDISABLED"}` },
-        { label: `Legendary: ${enabledCategories.legendary ? "§aENABLED" : "§cDISABLED"}` },
-        { label: `Frozen Fragment: ${enabledCategories.FrozenFragment ? "§aENABLED" : "§cDISABLED"}` },
-        { label: `Screen Alerts: ${displayAlertsOnScreen ? "§aON" : "§cOFF"}` } // New toggle for screen alerts
+        { label: `Common Alerts: ${enabledCategories.common ? "§aENABLED" : "§cDISABLED"}` },
+        { label: `Rare Alerts: ${enabledCategories.rare ? "§aENABLED" : "§cDISABLED"}` },
+        { label: `Legendary Alerts: ${enabledCategories.legendary ? "§aENABLED" : "§cDISABLED"}` },
+        { label: `Frozen Fragment Alerts: ${enabledCategories.FrozenFragment ? "§aENABLED" : "§cDISABLED"}` },
+        { label: `Screen Alerts: ${displayAlertsOnScreen ? "§aON" : "§cOFF"}` } // Added toggle
     ];
 
+    // Render the toggle buttons for each option
     options.forEach((opt, i) => {
-        Renderer.drawRect(Renderer.color(60, 60, 60, 160), buttonX, y + 40 + i * (buttonH + 10), buttonW, buttonH);
+        // Draw button background with a subtle shade
+        Renderer.drawRect(Renderer.color(50, 50, 50, 180), buttonX, y + 40 + i * (buttonH + 10), buttonW, buttonH);
+        // Display option label in the center of the button
         Renderer.drawStringWithShadow(opt.label, sw / 2 - Renderer.getStringWidth(opt.label) / 2, y + 48 + i * (buttonH + 10));
     });
 });
@@ -181,16 +187,17 @@ register("clicked", (mx, my, button, isDown) => {
 
     const sw = Renderer.screen.getWidth();
     const sh = Renderer.screen.getHeight();
-    const boxW = 250;
-    const boxH = 240;
+    const boxW = 350;
+    const boxH = 400;
     const x = sw / 2 - boxW / 2;
     const y = sh / 2 - boxH / 2;
-    const buttonW = 200;
-    const buttonH = 25;
+    const buttonW = 250;
+    const buttonH = 30;
     const buttonX = sw / 2 - buttonW / 2;
 
     const inBounds = (bx, by, bw, bh) => mx >= bx && mx <= bx + bw && my >= by && my <= by + bh;
 
+    // Check each button for toggling
     if (inBounds(buttonX, y + 40, buttonW, buttonH)) {
         debugMode = !debugMode;
         World.playSound("random.click", 1, 1);
