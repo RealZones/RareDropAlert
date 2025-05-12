@@ -1,23 +1,23 @@
 const RARITY_CATEGORIES = {
     common: [
         "Sharpened Claws", "Hardened Scale", "Rapid Cannon", "Fierce Feather",
-        "Aspect of the Dragons", "Dragon Claw", "Dragon Scale", "Necromancer's Brooch", "Tiger Pet", "Crown Of Greed", "Sheep Pet"
+        "Aspect of the Dragons", "Dragon Claw", "Dragon Scale", "Necromancer's Brooch"
     ],
     rare: [
-        "Black Cat", "Mythic Carrot", "Suspicious Vial", "Textbook",
-        "Dragon Horn",   "Golden Hot Potato Book"
+        "Tiger Pet", "Black Cat", "Mythic Carrot", "Suspicious Vial", "Textbook",
+        "Dragon Horn", "Crown Of Greed", "Sheep Pet", "Golden Hot Potato Book"
     ],
     legendary: [
         "Lucky Clover", "Golden Gun",
         "Necron’s Aegis", "Storm's Wand", "[Lvl 100] Ender Dragon", "Recombobulator 3000", "Golden Droplet", "Golden Egg"
     ]
-
-const guiKey = new KeyBind("Open Dragon GUI", Keyboard.KEY_G, "Dragon Alert");
+};
 
 let enabledCategories = {
     common: true,
     rare: true,
-    legendary: true
+    legendary: true,
+    FrozenFragment: true
 };
 
 let debugMode = true;
@@ -27,6 +27,9 @@ const COOLDOWN_MS = 2000;
 let displayDropName = null;
 let displayDropColor = null;
 let displayUntil = 0;
+
+let guiOpen = false;
+let displayAlertsOnScreen = true; // New variable to track screen alerts
 
 register("command", () => {
     debugMode = !debugMode;
@@ -39,7 +42,7 @@ register('chat', (event) => {
     if (message.includes("You are not required to pass the captcha.")) {
         ChatLib.chat("§9[§dRareDropAlerts§9] §fTo open/close the GUI, type §a/rda");
     }
-}); // <-- Added closing brace here
+});
 
 register('chat', (event) => {
     const message = ChatLib.getChatMessage(event).removeFormatting();
@@ -88,6 +91,8 @@ register('chat', (event) => {
 });
 
 register('chat', (message) => {
+    if (!enabledCategories.FrozenFragment) return;
+
     if (message.removeFormatting().startsWith("You got a frozen fragment!")) {
         World.playSound("random.orb", 1, 1);
 
@@ -100,23 +105,24 @@ register('chat', (message) => {
 }).setCriteria("${message}");
 
 register("renderOverlay", () => {
-    if (displayDropName && Date.now() < displayUntil) {
-        const text = `${displayDropColor}${displayDropName}`;
-        const textWidth = Renderer.getStringWidth(displayDropName) * 3;
-        const screenWidth = Renderer.screen.getWidth();
-        const screenHeight = Renderer.screen.getHeight();
+    if (!displayAlertsOnScreen || !displayDropName || Date.now() >= displayUntil) return;
 
-        Renderer.scale(3);
-        Renderer.drawStringWithShadow(text, (screenWidth / 6) - (textWidth / 2 / 3), (screenHeight / 6) - 5);
-    }
+    const text = `${displayDropColor}${displayDropName}`;
+    const textWidth = Renderer.getStringWidth(displayDropName) * 3;
+    const screenWidth = Renderer.screen.getWidth();
+    const screenHeight = Renderer.screen.getHeight();
+
+    Renderer.scale(3);
+    Renderer.drawStringWithShadow(text, (screenWidth / 6) - (textWidth / 2 / 3), (screenHeight / 6) - 5);
 });
-
-let guiOpen = false;
 
 register("command", () => {
     guiOpen = !guiOpen;
-    if (guiOpen) Client.hideCrosshair();
-    else Client.showCrosshair();
+    if (guiOpen) {
+        Client.hideCrosshair();
+    } else {
+        Client.showCrosshair();
+    }
 }).setName("rda");
 
 register("guiClosed", () => {
@@ -142,7 +148,7 @@ register("renderOverlay", () => {
     const sh = Renderer.screen.getHeight();
 
     const boxW = 250;
-    const boxH = 220;
+    const boxH = 240; // Increased box height for new toggle button
     const x = sw / 2 - boxW / 2;
     const y = sh / 2 - boxH / 2;
 
@@ -159,7 +165,9 @@ register("renderOverlay", () => {
         { label: `Debug Mode: ${debugMode ? "§aON" : "§cOFF"}` },
         { label: `Common: ${enabledCategories.common ? "§aENABLED" : "§cDISABLED"}` },
         { label: `Rare: ${enabledCategories.rare ? "§aENABLED" : "§cDISABLED"}` },
-        { label: `Legendary: ${enabledCategories.legendary ? "§aENABLED" : "§cDISABLED"}` }
+        { label: `Legendary: ${enabledCategories.legendary ? "§aENABLED" : "§cDISABLED"}` },
+        { label: `Frozen Fragment: ${enabledCategories.FrozenFragment ? "§aENABLED" : "§cDISABLED"}` },
+        { label: `Screen Alerts: ${displayAlertsOnScreen ? "§aON" : "§cOFF"}` } // New toggle for screen alerts
     ];
 
     options.forEach((opt, i) => {
@@ -174,7 +182,7 @@ register("clicked", (mx, my, button, isDown) => {
     const sw = Renderer.screen.getWidth();
     const sh = Renderer.screen.getHeight();
     const boxW = 250;
-    const boxH = 220;
+    const boxH = 240;
     const x = sw / 2 - boxW / 2;
     const y = sh / 2 - boxH / 2;
     const buttonW = 200;
@@ -189,7 +197,8 @@ register("clicked", (mx, my, button, isDown) => {
         ChatLib.chat(`§9[§dDragonAlert§9] §fDebug mode is now ${debugMode ? "§aON" : "§cOFF"}`);
     }
 
-    const cats = ["common", "rare", "legendary"];
+    const cats = ["common", "rare", "legendary", "FrozenFragment"];
+
     cats.forEach((cat, i) => {
         if (inBounds(buttonX, y + 40 + (i + 1) * (buttonH + 10), buttonW, buttonH)) {
             enabledCategories[cat] = !enabledCategories[cat];
@@ -197,5 +206,11 @@ register("clicked", (mx, my, button, isDown) => {
             ChatLib.chat(`§9[§dDragonAlert§9] §f${cat} alerts are now ${enabledCategories[cat] ? "§aENABLED" : "§cDISABLED"}`);
         }
     });
-});
 
+    // Check for the Screen Alerts toggle click
+    if (inBounds(buttonX, y + 40 + (cats.length + 1) * (buttonH + 10), buttonW, buttonH)) {
+        displayAlertsOnScreen = !displayAlertsOnScreen;
+        World.playSound("random.click", 1, 1);
+        ChatLib.chat(`§9[§dDragonAlert§9] §fScreen alerts are now ${displayAlertsOnScreen ? "§aON" : "§cOFF"}`);
+    }
+});
