@@ -1,0 +1,8 @@
+{
+    "name": "DragonDropAlert",
+    "version": "1.0.0",
+    "description": "Alerts when a rare dragon drop appears",
+    "author": "Fear",
+    "entry": "dragonAlert.js"
+  }
+  
