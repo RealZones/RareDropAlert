@@ -5,11 +5,11 @@ const RARITY_CATEGORIES = {
     ],
     rare: [
         "Tiger Pet", "Black Cat", "Mythic Carrot", "Suspicious Vial", "Textbook",
-        "Dragon Horn", "Crown Of Greed", "Sheep Pet"
+        "Dragon Horn", "Crown Of Greed", "Sheep Pet", "Golden Hot Potato Book"
     ],
     legendary: [
         "Lucky Clover", "Golden Gun",
-        "Necron’s Aegis", "Storm's Wand", "[Lvl 100] Ender Dragon"
+        "Necron’s Aegis", "Storm's Wand", "[Lvl 100] Ender Dragon", "Recombobulator 3000", "Golden Droplet", "Golden Egg"
     ]
 };
 
