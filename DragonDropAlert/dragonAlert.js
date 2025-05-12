@@ -5,7 +5,7 @@ const RARITY_CATEGORIES = {
     ],
     rare: [
          "[Lvl 100] Black Cat", "Mythic Carrot", "Suspicious Vial", "Textbook", 
-        "Dragon Horn", "Golden Hot Potato Book", "Spirit Stone", "Midas Jewel"
+        "Dragon Horn", "Golden Hot Potato Book", "Spirit Stone", "Midas Jewel", "Mysterious Handle"
     ],
     legendary: [
         "Lucky Clover", "Golden Gun",
