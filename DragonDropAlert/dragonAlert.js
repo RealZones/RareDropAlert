@@ -1,17 +1,16 @@
 const RARITY_CATEGORIES = {
     common: [
         "Sharpened Claws", "Hardened Scale", "Rapid Cannon", "Fierce Feather",
-        "Aspect of the Dragons", "Dragon Claw", "Dragon Scale", "Necromancer's Brooch"
+        "Aspect of the Dragons", "Dragon Claw", "Dragon Scale", "Necromancer's Brooch", "Tiger Pet", "Crown Of Greed", "Sheep Pet"
     ],
     rare: [
-        "Tiger Pet", "Black Cat", "Mythic Carrot", "Suspicious Vial", "Textbook",
-        "Dragon Horn", "Crown Of Greed", "Sheep Pet", "Golden Hot Potato Book"
+        "Black Cat", "Mythic Carrot", "Suspicious Vial", "Textbook",
+        "Dragon Horn",   "Golden Hot Potato Book"
     ],
     legendary: [
         "Lucky Clover", "Golden Gun",
         "Necron’s Aegis", "Storm's Wand", "[Lvl 100] Ender Dragon", "Recombobulator 3000", "Golden Droplet", "Golden Egg"
     ]
-};
 
 const guiKey = new KeyBind("Open Dragon GUI", Keyboard.KEY_G, "Dragon Alert");
 
