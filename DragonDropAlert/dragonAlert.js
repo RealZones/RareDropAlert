@@ -204,7 +204,7 @@ register("clicked", (mx, my, button, isDown) => {
         ChatLib.chat(`§9[§dDragonAlert§9] §fDebug mode is now ${debugMode ? "§aON" : "§cOFF"}`);
     }
 
-    const cats = ["common", "rare", "legendary", "FrozenFragment"];
+    const cats = ["common", "rare", "legendary", "Frozen Fragment"];
 
     cats.forEach((cat, i) => {
         if (inBounds(buttonX, y + 40 + (i + 1) * (buttonH + 10), buttonW, buttonH)) {
