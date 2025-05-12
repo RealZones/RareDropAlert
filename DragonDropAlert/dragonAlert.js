@@ -1,11 +1,11 @@
 const RARITY_CATEGORIES = {
     common: [
         "Sharpened Claws", "Hardened Scale", "Rapid Cannon", "Fierce Feather",
-        "Aspect of the Dragons", "Dragon Claw", "Dragon Scale", "Necromancer's Brooch", "Sheep Pet", "Tiger Pet", "Crown Of Greed"
+        "Aspect of the Dragons", "Dragon Claw", "Dragon Scale", "Necromancer's Brooch", "[Lvl 100] Sheep Pet", "[Lvl 100] Tiger Pet", "Crown Of Greed"
     ],
     rare: [
-         "Black Cat", "Mythic Carrot", "Suspicious Vial", "Textbook",
-        "Dragon Horn", "Golden Hot Potato Book"
+         "[Lvl 100] Black Cat", "Mythic Carrot", "Suspicious Vial", "Textbook", 
+        "Dragon Horn", "Golden Hot Potato Book", "Spirit Stone"
     ],
     legendary: [
         "Lucky Clover", "Golden Gun",
