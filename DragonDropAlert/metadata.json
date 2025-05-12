@@ -4,5 +4,5 @@
   "description": "Alerts when a rare dragon drop appears. Use /rda to open the GUI. These are the 3 Rarity Groups: 1: Sharpened Claws, Hardened Scale, Rapid Cannon, Fierce Feather, Aspect of the Dragons, Dragon Claw, Dragon Scale, Necromancer's Brooch, 2: Tiger Pet, Black Cat, Mythic Carrot, Suspicious Vial, Textbook, Dragon Horn, Crown Of Greed, Sheep Pet, 3: Lucky Clover, Golden Gun, Necron's Aegis, Storm's Wand, [Lvl 100] Ender Dragon.",
   "author": "Fear",
   "entry": "dragonAlert.js",
-  "download": "https://github.com/RealZones/RareDropAlert/archive/refs/heads/main.zip"
+  "download": "https://github.com/RealZones/RareDropAlert/tree/main/DragonDropAlert"
 }
