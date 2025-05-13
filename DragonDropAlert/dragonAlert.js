@@ -1,7 +1,7 @@
 const RARITY_CATEGORIES = {
     common: [
         "Sharpened Claws", "Hardened Scale", "Rapid Cannon", "Fierce Feather",
-        "Aspect of the Dragons", "Dragon Claw", "Dragon Scale", "Necromancer's Brooch", "[Lvl 100] Sheep Pet", "[Lvl 100] Tiger Pet", "Crown Of Greed", "Pure Seeds"
+        "Aspect of the Dragons", "Dragon Claw", "Dragon Scale", "Necromancer's Brooch", "[Lvl 100] Sheep Pet", "[Lvl 100] Tiger Pet", "Crown of Greed", "Pure Seeds"
     ],
     rare: [
          "[Lvl 100] Black Cat", "Mythic Carrot", "Suspicious Vial", "Textbook", 
