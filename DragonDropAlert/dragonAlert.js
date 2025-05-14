@@ -1,11 +1,13 @@
 const RARITY_CATEGORIES = {
-    common: [
-        "Sharpened Claws", "Hardened Scale", "Rapid Cannon", "Fierce Feather",
-        "Aspect of the Dragons", "Dragon Claw", "Dragon Scale", "Necromancer's Brooch", "[Lvl 100] Sheep", "[Lvl 100] Tiger", "Crown of Greed", "Pure Seeds"
+common: [
+        "Sharpened Claws", "Hardened Scale",  "Aspect of the Dragons", "Dragon Claw", "Dragon Scale", "Necromancer's Brooch"
     ],
     rare: [
+        "[Lvl 100] Sheep", "[Lvl 100] Tiger", "Crown of Greed", "Pure Seeds", "Precise Lens", "Spirit Stone"
+    ],
+    epic: [
         "[Lvl 100] Black Cat", "Mythic Carrot", "Suspicious Vial", "Textbook",
-        "Dragon Horn", "Golden Hot Potato Book", "Spirit Stone", "Midas Jewel", "Mysterious Handle"
+        "Dragon Horn", "Golden Hot Potato Book", "Midas Jewel", "Mysterious Handle"
     ],
     legendary: [
         "Lucky Clover", "Golden Gun",
@@ -16,9 +18,11 @@ const RARITY_CATEGORIES = {
 let enabledCategories = {
     common: true,
     rare: true,
+    epic: true,
     legendary: true,
     FrozenFragment: true
 };
+
 
 let debugMode = true;
 let lastAlerted = {};
@@ -34,6 +38,7 @@ let displayAlertsOnScreen = true;
 const cats = [
     { key: "common", label: "Common" },
     { key: "rare", label: "Rare" },
+    { key: "epic", label: "Epic" },
     { key: "legendary", label: "Legendary" },
     { key: "FrozenFragment", label: "Frozen Fragment" }
 ];
