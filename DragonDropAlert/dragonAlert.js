@@ -24,7 +24,7 @@ let enabledCategories = {
 };
 
 
-let debugMode = true;
+let debugMode = false;
 let lastAlerted = {};
 const COOLDOWN_MS = 2000;
 
@@ -66,22 +66,22 @@ register('chat', (event) => {
                 if (!entity || !entity.getName()) return;
                 const name = entity.getName().removeFormatting();
                 Object.entries(RARITY_CATEGORIES).forEach(([category, drops]) => {
-                    if (!enabledCategories[category]) return;
-                    drops.forEach(dropName => {
-                        if (name === `1x ${dropName}`) {
-                            const now = Date.now();
-                            if (!lastAlerted[dropName] || now - lastAlerted[dropName] > COOLDOWN_MS) {
-                                ChatLib.chat(`§5[§6DROP ALERT§5] §d${dropName}`);
-                                World.playSound("random.orb", 1, 1);
-                                displayDropName = dropName;
-                                displayDropColor = "§d";
-                                displayUntil = Date.now() + 3000;
-                                lastAlerted[dropName] = now;
-                                foundDrop = true;
-                            }
+                if (!enabledCategories[category]) return;
+                drops.forEach(dropName => {
+                    if (name.includes(dropName)) {
+                        const now = Date.now();
+                        if (!lastAlerted[dropName] || now - lastAlerted[dropName] > COOLDOWN_MS) {
+                            ChatLib.chat(`§5[§6DROP ALERT§5] §d${dropName}`);
+                            World.playSound("random.orb", 1, 1);
+                            displayDropName = dropName;
+                            displayDropColor = "§d";
+                            displayUntil = Date.now() + 3000;
+                            lastAlerted[dropName] = now;
+                            foundDrop = true;
                         }
-                    });
+                    }
                 });
+            });
             });
             if (debugMode && !foundDrop) {
                 ChatLib.chat(`§8[DEBUG] No rare drops found.`);
