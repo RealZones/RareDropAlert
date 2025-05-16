@@ -14,7 +14,6 @@ let displayDropName = null;
 let displayDropColor = null;
 let displayUntil = 0;
 
-// DRAGON DOWN detection - old method restored
 register('chat', (event) => {
     const message = ChatLib.getChatMessage(event).removeFormatting();
     if (message.includes("DRAGON DOWN!")) {
@@ -48,7 +47,6 @@ register('chat', (event) => {
     }
 });
 
-// Frozen Fragment detection (unchanged)
 register("chat", (message) => {
     if (!settings.FrozenFragment) return;
     if (message.removeFormatting().startsWith("You got a frozen fragment!")) {
@@ -60,7 +58,6 @@ register("chat", (message) => {
     }
 }).setCriteria("${message}");
 
-// Overlay display
 register("renderOverlay", () => {
     if (!settings.displayAlertsOnScreen || !displayDropName || Date.now() >= displayUntil) return;
     const text = displayDropColor + displayDropName;
@@ -71,7 +68,6 @@ register("renderOverlay", () => {
     Renderer.drawStringWithShadow(text, (screenWidth / 6) - (textWidth / 2 / 3), (screenHeight / 6) - 5);
 });
 
-// Toggle Feedback in chat when Vigilance settings change
 let lastSettingsState = {
     debugMode: settings.debugMode,
     common: settings.common,
@@ -96,12 +92,10 @@ register("tick", () => {
     });
 });
 
-// Command to open Vigilance GUI
 register("command", () => {
     settings.openGUI();
 }).setName("rda");
 
-// Small reminder when you pass captcha
 register('chat', (event) => {
     const message = ChatLib.getChatMessage(event).removeFormatting();
     if (message.includes("You are not required to pass the captcha.")) {
