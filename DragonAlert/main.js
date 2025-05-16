@@ -2,7 +2,7 @@ import settings from './settings';
 
 const RARITY_CATEGORIES = {
     common: ["Sharpened Claws", "Hardened Scale", "Aspect of the Dragons", "Dragon Claw", "Dragon Scale", "Necromancer's Brooch"],
-    rare: ["[Lvl 100] Sheep", "[Lvl 100] Tiger", "Crown of Greed", "Pure Seeds", "Opticsl Lens", "Spirit Stone"],
+    rare: ["[Lvl 100] Sheep", "[Lvl 100] Tiger", "Crown of Greed", "Pure Seeds", "Optical Lens", "Spirit Stone"],
     epic: ["[Lvl 100] Black Cat", "Mythic Carrot", "Suspicious Vial", "Textbook", "Dragon Horn", "Golden Hot Potato Book", "Midas Jewel", "Mysterious Handle"],
     legendary: ["Lucky Clover", "Golden Gun", "Necron’s Aegis", "Storm's Wand", "[Lvl 100] Ender Dragon", "Recombobulator 3000", "Golden Droplet", "Golden Egg"]
 };
