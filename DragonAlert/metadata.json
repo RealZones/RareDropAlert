@@ -1,0 +1,7 @@
+{
+  "name": "DragonAlert",
+  "version": "1.0.0",
+  "description": "Alerts you when rare dragon drops appear.",
+  "entry": "main.js",
+  "requires": ["Vigilance"]
+}
